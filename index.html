@@ -56,8 +56,102 @@
         <div class="orb">
           <span class="orb-ring orb-ring--outer"></span>
           <span class="orb-ring orb-ring--middle"></span>
-          <span class="orb-ring orb-ring--inner"></span>
-          <span class="orb-core"><span class="orb-iris"></span></span>
+          <svg class="face" viewBox="0 0 240 240" focusable="false" aria-hidden="true">
+            <defs>
+              <linearGradient id="faceShell" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1e4f67"></stop>
+                <stop offset="0.45" stop-color="#0d2b3d"></stop>
+                <stop offset="1" stop-color="#05131d"></stop>
+              </linearGradient>
+              <linearGradient id="faceVisor" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#082534"></stop>
+                <stop offset="1" stop-color="#020d15"></stop>
+              </linearGradient>
+              <linearGradient id="faceLight" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f2ffff"></stop>
+                <stop offset="0.55" stop-color="#7df4ff"></stop>
+                <stop offset="1" stop-color="#16b0d2"></stop>
+              </linearGradient>
+              <radialGradient id="faceHalo">
+                <stop offset="0" stop-color="#38dcf5" stop-opacity="0.26"></stop>
+                <stop offset="0.62" stop-color="#38dcf5" stop-opacity="0.07"></stop>
+                <stop offset="1" stop-color="#38dcf5" stop-opacity="0"></stop>
+              </radialGradient>
+              <pattern id="faceScan" width="4" height="4" patternUnits="userSpaceOnUse">
+                <rect width="4" height="1" fill="#9be9f7" opacity="0.07"></rect>
+              </pattern>
+              <filter id="faceGlow" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur stdDeviation="3.4" result="blur"></feGaussianBlur>
+                <feMerge>
+                  <feMergeNode in="blur"></feMergeNode>
+                  <feMergeNode in="SourceGraphic"></feMergeNode>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <circle class="face-halo" cx="120" cy="120" r="104" fill="url(#faceHalo)"></circle>
+
+            <g class="face-antenna">
+              <rect x="112" y="34" width="16" height="26" rx="8" fill="#08222f" stroke="#2fd7f0" stroke-opacity="0.35"></rect>
+              <circle class="face-tip" cx="120" cy="26" r="8" fill="url(#faceLight)" filter="url(#faceGlow)"></circle>
+              <circle cx="120" cy="26" r="16" fill="none" stroke="#62f2ff" stroke-opacity="0.22"></circle>
+            </g>
+
+            <g class="face-ears">
+              <rect x="22" y="108" width="20" height="58" rx="10" fill="#071e2b" stroke="#2fd7f0" stroke-opacity="0.3"></rect>
+              <rect x="198" y="108" width="20" height="58" rx="10" fill="#071e2b" stroke="#2fd7f0" stroke-opacity="0.3"></rect>
+              <rect x="29" y="124" width="6" height="26" rx="3" fill="#62f2ff" opacity="0.5"></rect>
+              <rect x="205" y="124" width="6" height="26" rx="3" fill="#62f2ff" opacity="0.5"></rect>
+            </g>
+
+            <rect x="40" y="48" width="160" height="164" rx="38" fill="url(#faceShell)" stroke="#2fd7f0" stroke-opacity="0.4" stroke-width="1.5"></rect>
+            <rect x="49" y="57" width="142" height="146" rx="30" fill="none" stroke="#8ff8ff" stroke-opacity="0.08"></rect>
+            <rect x="40" y="48" width="160" height="164" rx="38" fill="url(#faceScan)"></rect>
+
+            <rect x="58" y="80" width="124" height="70" rx="24" fill="url(#faceVisor)" stroke="#2fd7f0" stroke-opacity="0.28"></rect>
+
+            <g class="face-brows" stroke="#62f2ff" stroke-width="1.8" stroke-linecap="round" opacity="0.38">
+              <path d="M64 70h22"></path>
+              <path d="M154 70h22"></path>
+            </g>
+
+            <g class="face-eye face-eye--left">
+              <ellipse cx="94" cy="114" rx="17" ry="18" fill="#031722" stroke="#2fd7f0" stroke-opacity="0.24"></ellipse>
+              <circle class="face-iris" cx="94" cy="114" r="9" fill="url(#faceLight)" filter="url(#faceGlow)"></circle>
+              <circle cx="94" cy="114" r="3.4" fill="#03131b"></circle>
+              <circle cx="91" cy="110" r="1.7" fill="#ffffff" opacity="0.9"></circle>
+            </g>
+            <g class="face-eye face-eye--right">
+              <ellipse cx="146" cy="114" rx="17" ry="18" fill="#031722" stroke="#2fd7f0" stroke-opacity="0.24"></ellipse>
+              <circle class="face-iris" cx="146" cy="114" r="9" fill="url(#faceLight)" filter="url(#faceGlow)"></circle>
+              <circle cx="146" cy="114" r="3.4" fill="#03131b"></circle>
+              <circle cx="143" cy="110" r="1.7" fill="#ffffff" opacity="0.9"></circle>
+            </g>
+
+            <g class="face-mouth">
+              <rect x="76" y="164" width="88" height="28" rx="14" fill="#02101a" stroke="#2fd7f0" stroke-opacity="0.22"></rect>
+              <g fill="url(#faceLight)">
+                <rect class="mouth-bar" x="82" y="169" width="4" height="18" rx="2" style="--i:0"></rect>
+                <rect class="mouth-bar" x="91" y="169" width="4" height="18" rx="2" style="--i:1"></rect>
+                <rect class="mouth-bar" x="100" y="169" width="4" height="18" rx="2" style="--i:2"></rect>
+                <rect class="mouth-bar" x="109" y="169" width="4" height="18" rx="2" style="--i:3"></rect>
+                <rect class="mouth-bar" x="118" y="169" width="4" height="18" rx="2" style="--i:4"></rect>
+                <rect class="mouth-bar" x="127" y="169" width="4" height="18" rx="2" style="--i:5"></rect>
+                <rect class="mouth-bar" x="136" y="169" width="4" height="18" rx="2" style="--i:6"></rect>
+                <rect class="mouth-bar" x="145" y="169" width="4" height="18" rx="2" style="--i:7"></rect>
+                <rect class="mouth-bar" x="154" y="169" width="4" height="18" rx="2" style="--i:8"></rect>
+              </g>
+            </g>
+
+            <g class="face-vents" stroke="#62f2ff" stroke-width="1.6" stroke-linecap="round" opacity="0.22">
+              <path d="M94 200h12"></path>
+              <path d="M114 200h12"></path>
+              <path d="M134 200h12"></path>
+            </g>
+
+            <rect x="102" y="203" width="36" height="12" rx="6" fill="#061a26" stroke="#2fd7f0" stroke-opacity="0.25"></rect>
+            <ellipse cx="120" cy="222" rx="38" ry="5" fill="#62f2ff" opacity="0.07"></ellipse>
+          </svg>
         </div>
         <p class="orb-name">ORACLE-9</p>
         <p class="orb-role">Signal entity <span aria-hidden="true">/</span> channel 09</p>

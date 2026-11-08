@@ -185,26 +185,64 @@
      Speech synthesis (opt-in only)
      --------------------------------------------------------------------- */
 
+  // Voice lists differ wildly by platform and include joke voices, so rank
+  // them instead of taking whichever English voice happens to come first.
+  var naturalNames = /samantha|serena|karen|moira|tessa|kate|alex|daniel|oliver|aria|jenny|sonia|libby|hazel|ryan|guy|george/i;
+  var noveltyNames = /\b(albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|grandma|grandpa|junior|ralph|fred|kathy|eddy|flo|reed|rocko|sandy|shelley)\b/i;
+  var nameBias = {
+    samantha: 16,
+    serena: 14,
+    karen: 12,
+    kate: 8,
+    moira: 10,
+    daniel: 6,
+    tessa: 6
+  };
+
+  function scoreVoice(voice) {
+    var name = voice.name || '';
+    var lang = (voice.lang || '').toLowerCase().replace('_', '-');
+
+    if (lang.indexOf('en') !== 0) return -1;
+
+    var score = 0;
+    if (lang.indexOf('en-gb') === 0) score += 24;
+    else if (lang.indexOf('en-au') === 0) score += 22;
+    else if (lang.indexOf('en-ie') === 0) score += 20;
+    else if (lang.indexOf('en-us') === 0) score += 19;
+    else score += 10;
+
+    if (/natural|neural|premium|enhanced/i.test(name)) score += 45;
+    if (/google/i.test(name)) score += 20;
+    if (naturalNames.test(name)) score += 28;
+
+    var key = name.toLowerCase().split(' ')[0];
+    if (nameBias[key]) score += nameBias[key];
+
+    if (noveltyNames.test(name)) score -= 120;
+    if (voice.localService === false) score += 6;
+
+    return score;
+  }
+
   function chooseVoice() {
     if (!hasSpeech) return null;
 
     var voices = window.speechSynthesis.getVoices();
     if (!voices || !voices.length) return null;
 
-    var languages = ['en-GB', 'en-AU', 'en-US', 'en'];
+    var best = voices[0];
+    var bestScore = scoreVoice(best);
 
-    for (var i = 0; i < languages.length; i += 1) {
-      var match = voices.filter(function (voice) {
-        return voice.lang && voice.lang.toLowerCase().indexOf(languages[i].toLowerCase()) === 0;
-      })[0];
-      if (match) return match;
+    for (var i = 1; i < voices.length; i += 1) {
+      var score = scoreVoice(voices[i]);
+      if (score > bestScore) {
+        best = voices[i];
+        bestScore = score;
+      }
     }
 
-    return (
-      voices.filter(function (voice) {
-        return voice.default;
-      })[0] || voices[0]
-    );
+    return best;
   }
 
   function setSpeaking(next) {
@@ -247,12 +285,16 @@
       speechStatus.textContent = 'Reading the message aloud.';
     }
 
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+    }
+
     // Queue synchronously so mobile browsers keep the tap's user activation.
     chunks.forEach(function (text) {
       var utterance = new window.SpeechSynthesisUtterance(text);
-      utterance.rate = 0.82;
-      utterance.pitch = 0.72;
-      utterance.volume = 1;
+      utterance.rate = 0.97;
+      utterance.pitch = 0.95;
+      utterance.volume = 0.95;
 
       if (voice) {
         utterance.voice = voice;
