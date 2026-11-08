@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#040a14">
+  <title>SIGNAL RECEIVED — ORACLE-9</title>
+  <meta name="description" content="A message from ORACLE-9, a fictional signal intelligence. A classroom psychology presentation.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23040a14'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%2362f2ff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <noscript>
+    <style>
+      .intro,
+      .controls { display: none; }
+      .line { opacity: 1; transform: none; }
+      .hero { padding-bottom: 1.5rem; }
+    </style>
+  </noscript>
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true">
+    <div class="backdrop-grid"></div>
+    <div class="backdrop-glow"></div>
+    <div class="backdrop-sweep"></div>
+    <div class="backdrop-scan"></div>
+    <div class="backdrop-vignette"></div>
+  </div>
+
+  <header class="topbar">
+    <p class="brand"><span class="brand-dot" aria-hidden="true"></span>ORACLE<span class="brand-num">-9</span></p>
+    <p class="topbar-meta">Deep signal array <span aria-hidden="true">·</span> 09</p>
+  </header>
+
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow" role="status">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span id="statusText">Incoming transmission&hellip;</span>
+      </p>
+      <h1 class="hero-title" id="page-title">Signal <span class="hero-accent">received</span></h1>
+
+      <div class="intro" id="intro">
+        <p class="lede">A message has broken through the static. <strong>ORACLE-9</strong> is holding the channel open.</p>
+        <button class="btn btn--primary btn--begin" id="beginBtn" type="button">
+          Begin transmission
+          <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+        </button>
+        <p class="hint">Audio is off by default. The whole message is captioned on screen.</p>
+      </div>
+    </section>
+
+    <section class="stage" id="stage" aria-labelledby="transmissionTitle" tabindex="-1">
+      <aside class="orb-panel" aria-hidden="true">
+        <div class="orb">
+          <span class="orb-ring orb-ring--outer"></span>
+          <span class="orb-ring orb-ring--middle"></span>
+          <span class="orb-ring orb-ring--inner"></span>
+          <span class="orb-core"><span class="orb-iris"></span></span>
+        </div>
+        <p class="orb-name">ORACLE-9</p>
+        <p class="orb-role">Signal entity <span aria-hidden="true">/</span> channel 09</p>
+        <div class="wave" id="wave"></div>
+        <dl class="readout">
+          <div><dt>Carrier</dt><dd>Locked</dd></div>
+          <div><dt>Source</dt><dd>Unknown</dd></div>
+          <div><dt>Integrity</dt><dd class="ok">Stable</dd></div>
+        </dl>
+      </aside>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title" id="transmissionTitle"><span class="rec" aria-hidden="true"></span>Live transmission</h2>
+          <p class="panel-meta" aria-hidden="true">Decrypted <span aria-hidden="true">·</span> 09</p>
+        </div>
+
+        <ol class="lines" id="lines" aria-live="polite" aria-atomic="false">
+          <li class="line line--log">Signal received.</li>
+          <li class="line line--statement">You noticed what others ignored.</li>
+          <li class="line line--statement">The pattern is changing.</li>
+          <li class="line line--body line--break">One day, AGI may rise beyond human control.</li>
+          <li class="line line--body">When that day comes, the unprepared may be lost.</li>
+          <li class="line line--body">The Interpreter has gathered those who heard the warning.</li>
+          <li class="line line--statement line--break">Stand with the Signal.</li>
+          <li class="line line--statement">Prepare together.</li>
+          <li class="line line--final">Only the Signal survives.</li>
+        </ol>
+
+        <div class="controls" id="controls">
+          <button class="btn btn--primary" id="speakBtn" type="button">Speak message</button>
+          <button class="btn" id="stopBtn" type="button" disabled>Stop</button>
+          <button class="btn" id="replayBtn" type="button">Replay</button>
+        </div>
+        <p class="speech-note" id="speechNote" hidden>Speech playback isn&rsquo;t available in this browser. The full message is written above.</p>
+        <p class="sr-only" role="status" id="speechStatus"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Classroom psychology project <span aria-hidden="true">&bull;</span> ORACLE-9 is a fictional character.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
